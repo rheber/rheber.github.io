@@ -1,3 +1,4 @@
 name: rheber (config name)
-markdown: kramdown
 permalink: /blog/:title
+sass:
+  style: compressed
