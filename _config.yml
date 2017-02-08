@@ -1,4 +1,5 @@
-name: rheber (config name)
+name: Plot Hole
 permalink: /blog/:title
+repository: rheber/rheber.github.io
 sass:
   style: compressed
