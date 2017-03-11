@@ -1,5 +1,5 @@
 name: Plot Hole
-permalink: /blog/:title
+permalink: /plot-hole/:title
 repository: rheber/rheber.github.io
 sass:
   style: compressed
