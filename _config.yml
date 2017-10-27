@@ -1,5 +1,5 @@
-name: Plot Hole
-permalink: /plot-hole/:title
+name: Nothing To See Here
+permalink: /nothing-to-see-here/:title
 repository: rheber/rheber.github.io
 sass:
   style: compressed
