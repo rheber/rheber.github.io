@@ -1,22 +1,17 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Nothing To See Here | {{ page.title }}</title>
-    <!-- link to main stylesheet -->
-    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
-    <link rel="shortcut icon" type="image/png" sizes="16x16" href="/favicon.png">
-  </head>
-  <body>
-    <header>
-      <a href="/index.html">Nothing To See Here</a>
-    </header>
-    <div class="container">
+---
+layout: headTitled
+---
+<!-- Body with header and footer. -->
+<body>
+  <header>
+    <a href="/index.html">Nothing To See Here</a>
+  </header>
+  <div class="container">
 
-    {{ content }}
+  {{ content }}
 
-    </div><!-- /.container -->
-    <footer>
-      <a href="https://github.com/rheber">github.com/rheber</a>
-    </footer>
-  </body>
-</html>
+  </div><!-- /.container -->
+  <footer>
+    <a href="https://github.com/rheber">github.com/rheber</a>
+  </footer>
+</body>
