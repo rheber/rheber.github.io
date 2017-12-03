@@ -12,6 +12,10 @@ $(function () {
     jqc.MoveToEnd();
   });
 
+  jqc.SetKeyPressHandler(function(key) {
+    return /[\w\s!-\/:-@\[-`{-~]/.test(String.fromCharCode(key.which));
+  });
+
   function out(msg) {
     jqc.Write(msg, 'out');
   }
@@ -37,7 +41,7 @@ $(function () {
   }
 
   function parse(input) {
-    return input.split(/[ \t]+/);
+    return input.split(/ +/);
   }
 
   function exec(input) {
