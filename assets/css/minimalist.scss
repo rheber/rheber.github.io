@@ -42,8 +42,11 @@
 .jqconsole-old-input {
   color: hsl(120, 50%, 50%);
 }
-.jqconsole-output {
+.out {
   color: hsl(0, 0%, 100%);
+}
+.err {
+  color: hsl(0, 100%, 50%);
 }
 
 a {
