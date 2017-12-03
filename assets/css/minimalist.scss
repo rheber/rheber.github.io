@@ -1,9 +1,49 @@
 ---
 ---
 
+#containerDefault {
+  margin: auto;
+  width: 70%;
+}
+
 .wish {
-  margin-top: 1em;
+  margin: 1em auto;
   text-align: center;
+  width: 70%;
+}
+
+#console {
+  background-color: hsl(0, 0%, 0%);
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+.jqconsole {
+  padding: 1em;
+}
+.jqconsole-header {
+  color: hsl(120, 50%, 50%);
+}
+.jqconsole-cursor {
+  background-color: hsl(120, 100%, 50%);
+}
+.jqconsole-blurred .jqconsole-cursor {
+  background-color: hsl(120, 50%, 25%);
+}
+.jqconsole-prompt {
+  color: hsl(120, 100%, 50%);
+}
+.jqconsole-old-prompt {
+  color: hsl(120, 50%, 50%);
+}
+.jqconsole-input {
+  color: hsl(120, 100%, 50%);
+}
+.jqconsole-old-input {
+  color: hsl(120, 50%, 50%);
+}
+.jqconsole-output {
+  color: hsl(0, 0%, 100%);
 }
 
 a {
@@ -12,8 +52,7 @@ a {
 
 body {
   color: #333;
-  margin: auto;
-  width: 70%;
+  margin: 0;
 }
 
 header {
