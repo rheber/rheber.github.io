@@ -40,6 +40,12 @@ $(function () {
     out('help\t\tShow this message.\n');
   }
 
+  var cmds = {
+    'birthday': birthday,
+    'echo': echo,
+    'help': help
+  };
+
   function parse(input) {
     return input.split(/ +/);
   }
@@ -50,13 +56,9 @@ $(function () {
       return;
     }
     var cmd = parsed[0];
-    if(cmd === 'birthday') {
-      birthday();
-    } else if(cmd === 'echo') {
-      echo(parsed)
-    } else if(cmd === 'help') {
-      help();
-    } else {
+    try {
+      cmds[cmd](parsed);
+    } catch (e) {
       err('Syntax error\n');
     }
   }
