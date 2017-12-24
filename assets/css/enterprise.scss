@@ -1,0 +1,41 @@
+---
+---
+
+.hero {
+  color: hsl(30, 100%, 50%);
+  font-weight: bold;
+  position: relative;
+  text-align: center;
+}
+
+.overlay {
+  background-color: hsla(0, 100%, 0%, 0.5);
+  box-sizing: border-box;
+  height: 100%;
+  padding-top: 25%;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+body {
+  background-color: hsl(60, 100%, 50%);
+  font-size: 120%;
+}
+
+header {
+  a {
+    text-decoration: none;
+  }
+}
+
+footer {
+  text-align: center;
+}
+
+img {
+  display: block;
+  height: auto;
+  margin: auto;
+  width: 100%
+}
