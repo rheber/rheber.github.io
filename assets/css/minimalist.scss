@@ -6,6 +6,21 @@
   width: 70%;
 }
 
+#themeNav {
+  text-align: center;
+  p, ul {
+    display: inline;
+  }
+}
+
+#themeNav ul {
+  li {
+    display: inline;
+  }
+  list-style-type: none;
+  padding: 0;
+}
+
 .wish {
   margin: 1em auto;
   text-align: center;
