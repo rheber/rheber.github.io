@@ -1,6 +1,21 @@
 ---
 ---
 
+#themeNav {
+  text-align: center;
+  p, ul {
+    display: inline;
+  }
+}
+
+#themeNav ul {
+  li {
+    display: inline;
+  }
+  list-style-type: none;
+  padding: 0;
+}
+
 .hero {
   color: hsl(30, 100%, 50%);
   font-weight: bold;
