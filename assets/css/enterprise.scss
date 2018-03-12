@@ -54,11 +54,17 @@ img.grid.synergy {
 .overlay {
   background-color: hsla(0, 100%, 0%, 0.5);
   box-sizing: border-box;
+  font-size: 80%;
   height: 100%;
-  padding-top: 25%;
   position: absolute;
   top: 0;
   width: 100%;
+}
+
+@media screen and (min-width: 450px) {
+  .overlay {
+    padding-top: 25%;
+  }
 }
 
 body {
