@@ -16,6 +16,34 @@
   padding: 0;
 }
 
+.contents {
+  text-align: center;
+}
+
+.grid {
+  align-content: center;
+  display: grid;
+  text-align: center;
+}
+
+p.grid.commitment {
+  grid-row: 1;
+  grid-column: 1 / 2;
+}
+img.grid.commitment {
+  grid-row: 1;
+  grid-column: 2 / 3;
+}
+
+p.grid.synergy {
+  grid-row: 2;
+  grid-column: 2 / 3;
+}
+img.grid.synergy {
+  grid-row: 2;
+  grid-column: 1 / 2;
+}
+
 .hero {
   color: hsl(30, 100%, 50%);
   font-weight: bold;
