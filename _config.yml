@@ -1,5 +1,5 @@
-name: Nothing To See Here
-permalink: /nothing-to-see-here/:title
+permalink: /content/:title
 repository: rheber/rheber.github.io
 sass:
   style: compressed
+title: Robert Heber's website
