@@ -43,11 +43,26 @@ Below is a list of available commands.
     out('\n');
     out('echo [ARGS]\tPrint arguments.\n');
     out('help\t\tShow this message.\n');
+    out('visit URL\tVisit a URL.\n');
+  }
+
+  function visit(parsed) {
+    if(parsed.length !== 2) {
+      err('Error: visit expects exactly one argument.');
+      return;
+    }
+    const url = parsed[1]
+    if(url.includes('://')) {
+      window.open(url);
+      return;
+    }
+    window.open(`https://${url}`);
   }
 
   const cmds = {
     'echo': echo,
-    'help': help
+    'help': help,
+    'visit': visit,
   };
 
   function parse(input) {
