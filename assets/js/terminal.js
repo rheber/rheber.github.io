@@ -13,6 +13,9 @@ $(function () {
   jqc.RegisterShortcut('A', function() {
     jqc.MoveToStart();
   });
+  jqc.RegisterShortcut('D', function() {
+    exit();
+  });
   jqc.RegisterShortcut('E', function() {
     jqc.MoveToEnd();
   });
@@ -43,6 +46,10 @@ $(function () {
     out('\n');
   }
 
+  function exit() {
+    window.close();
+  }
+
   function help() {
     out(helpText);
     out('\n');
@@ -54,8 +61,15 @@ $(function () {
     out('Other commands:\n');
     out('\n');
     out('echo [ARGS]\tPrint arguments.\n');
+    out('exit\t\tClose the shell.\n');
     out('help\t\tShow this message.\n');
     out('visit URL\tVisit a URL.\n');
+    out('\n');
+    out('Key bindings:\n');
+    out('\n');
+    out('Ctl-A\tMove cursor to start of line.\n');
+    out('Ctl-D\tClose the shell.\n');
+    out('Ctl-A\tMove cursor to end of line.\n');
   }
 
   function visit(parsed) {
@@ -77,6 +91,7 @@ $(function () {
 
   const cmds = {
     'echo': echo,
+    'exit': exit,
     'help': help,
     'visit': visit,
 
