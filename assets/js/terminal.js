@@ -69,7 +69,7 @@ $(function () {
     out('\n');
     out('Ctl-A\tMove cursor to start of line.\n');
     out('Ctl-D\tClose the shell.\n');
-    out('Ctl-A\tMove cursor to end of line.\n');
+    out('Ctl-E\tMove cursor to end of line.\n');
   }
 
   function visit(parsed) {
@@ -99,21 +99,33 @@ $(function () {
     'tryhackme': tryhackme,
   };
 
+  /*
+   * Convert a string into a parse tree.
+   */
   function parse(input) {
+    return input.split(';').map(parseStmt);
+  }
+
+  /*
+   * Convert a stmt into a list of words.
+   */
+  function parseStmt(input) {
     return input.split(/ +/);
   }
 
   function exec(input) {
-    const parsed = parse(input);
-    if(parsed.length === 0) {
-      return;
-    }
-    const cmd = parsed[0];
-    try {
-      cmds[cmd](parsed);
-    } catch (e) {
-      err('Syntax error\n');
-    }
+    const parseTree = parse(input);
+    parseTree.map(stmt => {
+      if(stmt[0].length === 0) {
+        return;
+      }
+      const cmd = stmt[0];
+      try {
+        cmds[cmd](stmt);
+      } catch (e) {
+        err('Syntax error\n');
+      }
+    });
   }
 
   const repl = function () {
