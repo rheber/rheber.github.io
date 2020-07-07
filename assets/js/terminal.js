@@ -31,6 +31,11 @@ $(function () {
     jqc.Write(msg, 'err');
   }
 
+  function randomElement(xs) {
+    const index = Math.floor(Math.random() * xs.length);
+    return xs[index];
+  }
+
   function _visit(url) {
     if(url.includes('://')) {
       window.open(url);
@@ -50,6 +55,15 @@ $(function () {
     window.close();
   }
 
+  function fortune() {
+    fetch('/assets/text/fortunes/paradoxum').then(
+      response => response.text()
+    ).then(text => {
+      const fortunes = text.split('%\n').filter(f => f.length > 0);
+      out(randomElement(fortunes));
+    });
+  }
+
   function help() {
     out(helpText);
     out('\n');
@@ -62,6 +76,7 @@ $(function () {
     out('\n');
     out('echo [ARGS]\tPrint arguments.\n');
     out('exit\t\tClose the shell.\n');
+    out('fortune\t\tPrint a random message.\n');
     out('help\t\tShow this message.\n');
     out('visit URL\tVisit a URL.\n');
     out('\n');
@@ -92,6 +107,7 @@ $(function () {
   const cmds = {
     'echo': echo,
     'exit': exit,
+    'fortune': fortune,
     'help': help,
     'visit': visit,
 
