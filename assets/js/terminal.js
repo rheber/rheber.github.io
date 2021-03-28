@@ -1,157 +1,119 @@
 "use strict";
 
 (function () {
-  const configuration = {}
-
-  const nonReactDomNode = document.getElementById('console')
-
-  window.unixorn.initUnixorn(nonReactDomNode, configuration)
-
-  /*
-  const welcomeText = 'Rob\'s Shell version 0.1. Enter `help` for basic information.\n';
-  const noFocus = false;
-  const jqc = $('#console').jqconsole(welcomeText, '\n>>> ', '... ', noFocus);
-
-  const helpText =
-    'This is the personal website of Robert Heber, software developer by vocation and swing dancer by avocation.\n' +
-    '\n' +
-    'My website is a shell because I am cool.\n'
-
-  jqc.RegisterShortcut('A', function() {
-    jqc.MoveToStart();
-  });
-  jqc.RegisterShortcut('D', function() {
-    exit();
-  });
-  jqc.RegisterShortcut('E', function() {
-    jqc.MoveToEnd();
-  });
-
-  jqc.SetKeyPressHandler(function(key) {
-    return /[\w\s!-\/:-@\[-`{-~]/.test(String.fromCharCode(key.which));
-  });
-
-  function out(msg) {
-    jqc.Write(msg, 'out');
-  }
-  function err(msg) {
-    jqc.Write(msg, 'err');
-  }
-
-  function randomElement(xs) {
+  const randomElement = (xs) => {
     const index = Math.floor(Math.random() * xs.length);
     return xs[index];
-  }
-
-  function _visit(url) {
-    if(url.includes('://')) {
-      window.open(url);
-      return;
-    }
-    window.open(`https://${url}`);
-  }
-
-  function echo(parsed) {
-    for(let i=1; i<parsed.length; i++) {
-      out(parsed[i] + ' ');
-    }
-    out('\n');
-  }
-
-  function exit() {
-    window.close();
-  }
-
-  function fortune() {
-    fetch('/assets/text/fortunes/paradoxum').then(
-      response => response.text()
-    ).then(text => {
-      const fortunes = text.split('%\n').filter(f => f.length > 0);
-      out(randomElement(fortunes));
-    });
-  }
-
-  function help() {
-    out(helpText);
-    out('\n');
-    out('Commands to get more information about me:\n');
-    out('\n');
-    out('github\t\tVisit my github profile.\n');
-    out('tryhackme\tVisit my tryhackme profile.\n');
-    out('\n');
-    out('Other commands:\n');
-    out('\n');
-    out('echo [ARGS]\tPrint arguments.\n');
-    out('exit\t\tClose the shell.\n');
-    out('fortune\t\tPrint a random message.\n');
-    out('help\t\tShow this message.\n');
-    out('visit URL\tVisit a URL.\n');
-    out('\n');
-    out('Key bindings:\n');
-    out('\n');
-    out('Ctl-A\tMove cursor to start of line.\n');
-    out('Ctl-D\tClose the shell.\n');
-    out('Ctl-E\tMove cursor to end of line.\n');
-  }
-
-  function visit(parsed) {
-    if(parsed.length !== 2) {
-      err('Error: visit expects exactly one argument.');
-      return;
-    }
-    const url = parsed[1]
-    _visit(url);
-  }
-
-  function github() {
-    _visit('github.com/rheber');
-  }
-
-  function tryhackme() {
-    _visit('tryhackme.com/p/rockstep');
-  }
-
-  const cmds = {
-    'echo': echo,
-    'exit': exit,
-    'fortune': fortune,
-    'help': help,
-    'visit': visit,
-
-    'github': github,
-    'tryhackme': tryhackme,
   };
 
-  function parse(input) {
-    return input.split(';').map(parseStmt);
-  }
+  const customCommands = [
+    {
+      name: "exit",
+      usage: "exit",
+      summary: 'Close the shell.',
+      action: () => {
+        window.close();
+      },
+    },
+    {
+      name: "fortune",
+      usage: "fortune",
+      summary: "Print a random message.",
+      action: (kernel) => {
+        fetch('/assets/text/fortunes/paradoxum').then(
+          response => response.text()
+        ).then(text => {
+          const fortunes = text.split('%\n').filter(f => f.length > 0);
+          kernel.printOut(randomElement(fortunes));
+        });
+      },
+    },
+    {
+      name: "github",
+      usage: "github",
+      summary: "Visit my github profile.",
+      action: (kernel) => {
+        kernel.visit("github.com/rheber");
+      },
+    },
+    {
+      name: "help",
+      usage: "help",
+      summary: "Show this message.",
+      action: (kernel) => {
+        const isPersonalCommand = (command) => {
+          return ["github", "tryhackme", "unixorn"].includes(command.name);
+        };
 
-    function parseStmt(input) {
-    return input.split(/ +/);
-  }
+        kernel.printOut("This is the personal website of Robert Heber; software developer by vocation, dancer and mahjong player by avocation.");
+        kernel.printOut('\n');
+        kernel.printOut("My website is a shell because I am cool.");
+        kernel.printOut('\n');
 
-  function exec(input) {
-    const parseTree = parse(input);
-    parseTree.map(stmt => {
-      if(stmt[0].length === 0) {
-        return;
-      }
-      const cmd = stmt[0];
-      try {
-        cmds[cmd](stmt);
-      } catch (e) {
-        err('Syntax error\n');
-      }
-    });
-  }
+        kernel.printOut("Commands to get more information about me:");
+        kernel.printOut('\n');
+        kernel.commands().filter(isPersonalCommand).forEach(command => {
+          kernel.printOut(`${command.usage}`.padEnd(20) + command.summary);
+        });
+        kernel.printOut('\n');
 
-  const repl = function () {
-    const historyEnabled = true;
-    jqc.Prompt(historyEnabled, function (input) {
-      exec(input);
-      repl();
-    });
+        kernel.printOut("Other commands:");
+        kernel.printOut('\n');
+        kernel.commands().filter(command => !isPersonalCommand(command)).forEach(command => {
+          kernel.printOut(`${command.usage}`.padEnd(20) + command.summary);
+        });
+        kernel.printOut('\n');
+
+        kernel.printOut('Keybindings:');
+        kernel.printOut('\n');
+        kernel.keybindings().forEach(keybinding => {
+          kernel.printOut(`ctrl-${keybinding.key}`.padEnd(20) + keybinding.summary);
+        });
+      },
+    },
+    {
+      name: "tryhackme",
+      usage: "tryhackme",
+      summary: "Visit my tryhackme profile.",
+      action: (kernel) => {
+        kernel.visit("tryhackme.com/p/rockstep");
+      },
+    },
+    {
+      name: "unixorn",
+      usage: "unixorn",
+      summary: "Visit the main page of Unixorn, a library I built to create this site.",
+      action: (kernel) => {
+        kernel.visit("github.com/rheber/unixorn");
+      },
+    },
+  ];
+  const commands = [
+    ...window.unixorn.defaultCommands.filter(command => command.name !== "help"),
+    ...customCommands,
+  ];
+
+  const customKeybindings = [
+    {
+      key: "d",
+      summary: "Close the shell.",
+      action: () => {
+        window.close();
+      },
+    },
+  ];
+  const keybindings = [
+    ...window.unixorn.defaultKeybindings,
+    ...customKeybindings,
+  ];
+
+  const configuration = {
+    autoFocus: true,
+    commands,
+    keybindings,
+    startupMessage: "Rob's Shell version 1.0. Enter `help` for basic information.",
   };
-  repl();
-  */
+
+  const nonReactDomNode = document.getElementById("console");
+  window.unixorn.initUnixorn(nonReactDomNode, configuration);
 })();
