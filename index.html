@@ -5,7 +5,9 @@ style: terminal
 ---
 
 <noscript>It looks like you don't have Javascript enabled.</noscript>
-<script src="./vendor/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="./vendor/jqconsole.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="./assets/js/terminal.js" type="text/javascript" charset="utf-8"></script>
+  <script>
+    const process = { env: {} };
+  </script>
+<script src="./vendor/unixorn/index.umd.js" type="text/javascript" charset="utf-8"></script>
 <div id="console"></div>
+<script src="./assets/js/terminal.js" type="text/javascript" charset="utf-8"></script>

@@ -1,6 +1,13 @@
-"use strict"
+"use strict";
 
-$(function () {
+(function () {
+  const configuration = {}
+
+  const nonReactDomNode = document.getElementById('console')
+
+  window.unixorn.initUnixorn(nonReactDomNode, configuration)
+
+  /*
   const welcomeText = 'Rob\'s Shell version 0.1. Enter `help` for basic information.\n';
   const noFocus = false;
   const jqc = $('#console').jqconsole(welcomeText, '\n>>> ', '... ', noFocus);
@@ -115,17 +122,11 @@ $(function () {
     'tryhackme': tryhackme,
   };
 
-  /*
-   * Convert a string into a parse tree.
-   */
   function parse(input) {
     return input.split(';').map(parseStmt);
   }
 
-  /*
-   * Convert a stmt into a list of words.
-   */
-  function parseStmt(input) {
+    function parseStmt(input) {
     return input.split(/ +/);
   }
 
@@ -152,4 +153,5 @@ $(function () {
     });
   };
   repl();
-});
+  */
+})();
