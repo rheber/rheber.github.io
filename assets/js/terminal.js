@@ -45,7 +45,7 @@
           return ["github", "tryhackme", "unixorn"].includes(command.name);
         };
 
-        kernel.printOut("This is the personal website of Robert Heber; software developer by vocation, dancer and mahjong player by avocation.");
+        kernel.printOut("This is the personal website of Robert Heber.");
         kernel.printOut('\n');
         kernel.printOut("My website is a shell because I am cool.");
         kernel.printOut('\n');
@@ -89,13 +89,15 @@
     },
   ];
   const commands = [
-    ...window.unixorn.defaultCommands.filter(command => command.name !== "help"),
+    ...window.unixorn.defaultConfiguration.commands.filter(command => command.name !== "help"),
     ...customCommands,
   ];
 
   const customKeybindings = [
     {
       key: "d",
+      ctrl: true,
+      meta: false,
       summary: "Close the shell.",
       action: () => {
         window.close();
@@ -103,7 +105,7 @@
     },
   ];
   const keybindings = [
-    ...window.unixorn.defaultKeybindings,
+    ...window.unixorn.defaultConfiguration.keybindings,
     ...customKeybindings,
   ];
 
