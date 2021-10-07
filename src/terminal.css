@@ -1,8 +1,12 @@
----
----
-
 body {
   margin: 0;
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+
+#root {
+  height: 100%;
 }
 
 #console {

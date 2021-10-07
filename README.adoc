@@ -1,9 +1,7 @@
 = README
 
-To install dependencies: `bundle install`
+// https://haarsh.hashnode.dev/how-to-deploy-your-react-websites-on-github-pages
 
-To build: `bundle exec jekyll build`
+To serve locally: `npm run start`.
 
-To serve: `bundle exec jekyll serve`
-
-To clean: `bundle exec jekyll clean`
+To deploy: `npm run deploy`.
