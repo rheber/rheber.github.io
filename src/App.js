@@ -20,7 +20,7 @@ const customCommands = [
     usage: "fortune",
     summary: "Print a random message.",
     action: (kernel) => {
-      fetch('/assets/text/fortunes/paradoxum').then(
+      fetch('/text/fortunes/paradoxum').then(
         response => response.text()
       ).then(text => {
         const fortunes = text.split('%\n').filter(f => f.length > 0);
