@@ -8,14 +8,6 @@ const randomElement = (xs) => {
 
 const customCommands = [
   {
-    name: "exit",
-    usage: "exit",
-    summary: 'Close the shell.',
-    action: () => {
-      window.close();
-    },
-  },
-  {
     name: "fortune",
     usage: "fortune",
     summary: "Print a random message.",
@@ -86,15 +78,6 @@ const commands = [
 ];
 
 const customKeybindings = [
-  {
-    key: "d",
-    ctrl: true,
-    meta: false,
-    summary: "Close the shell.",
-    action: () => {
-      window.close();
-    },
-  },
 ];
 const keybindings = [
   ...defaultConfiguration.keybindings,
