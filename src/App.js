@@ -37,6 +37,8 @@ const customCommands = [
         return ["github", "unixorn"].includes(command.name);
       };
 
+      const padAmount = 24;
+
       kernel.printOut("This is the personal website of Robert Heber.");
       kernel.printOut('\n');
       kernel.printOut("My website is a shell because I am cool.");
@@ -45,21 +47,21 @@ const customCommands = [
       kernel.printOut("Commands to get more information about me:");
       kernel.printOut('\n');
       kernel.commands().filter(isPersonalCommand).forEach(command => {
-        kernel.printOut(`${command.usage}`.padEnd(20) + command.summary);
+        kernel.printOut(`${command.usage}`.padEnd(padAmount) + command.summary);
       });
       kernel.printOut('\n');
 
       kernel.printOut("Other commands:");
       kernel.printOut('\n');
       kernel.commands().filter(command => !isPersonalCommand(command)).forEach(command => {
-        kernel.printOut(`${command.usage}`.padEnd(20) + command.summary);
+        kernel.printOut(`${command.usage}`.padEnd(padAmount) + command.summary);
       });
       kernel.printOut('\n');
 
       kernel.printOut('Keybindings:');
       kernel.printOut('\n');
       kernel.keybindings().forEach(keybinding => {
-        kernel.printOut(`ctrl-${keybinding.key}`.padEnd(20) + keybinding.summary);
+        kernel.printOut(`ctrl-${keybinding.key}`.padEnd(padAmount) + keybinding.summary);
       });
     },
   },
