@@ -1,7 +1,0 @@
-= README
-
-// https://haarsh.hashnode.dev/how-to-deploy-your-react-websites-on-github-pages
-
-To serve locally: `npm run start`.
-
-To deploy: `npm run deploy`.
