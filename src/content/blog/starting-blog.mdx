@@ -1,0 +1,40 @@
+---
+title: 'Starting a Blog'
+pubDate: 'Jul 04 2024'
+---
+
+In this first post I'll outline the preliminary decisions I've made for this blog.
+
+## Framework
+
+I expect a statically rendered blog to provide a better experience than a single page application, due to:
+
+* Static rendering resulting in lower load times
+
+* Less client-side scripts to transmit resulting in lower load times
+
+* Lack of reliance on client-side scripts making the site friendly to Javascript blockers
+
+Therefore, I wanted to use a framework specialising in static site generation. Glancing at a list of frameworks, my attention was drawn to
+Astro by its optional compatibility with multiple frontend frameworks like React, which may be useful in future.
+
+## URLs
+
+A cursory search suggests that the consensus advocates for blog post slugs to be as short as possible to maximise legibility. In particular, slugs should:
+
+* Avoid stopwords like "a" and "the", which do not contribute significantly to the meaning of a slug
+
+* Avoid using dates, which can make posts seem outdated in addition to making slugs unnecessarily long
+
+For now I'll be using slugs of the form `/blog/starting-blog`, which are used by the default Astro project, although it's
+not currently obvious to me whether a slug like `/starting-blog` is better than `/blog/starting-blog` or `/posts/starting-blog`.
+
+## End marks
+
+This post didn't feel complete without some kind of end mark. A brief search led me to a post on the
+site [Responsive Web Typography](https://rwt.io/typography-tips/marks-ends-and-middles-end-marks-sections-and-dead-ends) which has a
+code snippet that I have adapted to append a fleuron to my posts. Time will tell whether I decide to keep this particular end mark.
+
+## To do
+
+The next couple of changes that I make should probably be basic styling for the site and making a functional home page.
