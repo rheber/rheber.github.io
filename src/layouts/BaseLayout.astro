@@ -1,4 +1,6 @@
 ---
+import '@fontsource/atkinson-hyperlegible';
+import '@fontsource/monaspace-neon';
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 
@@ -13,38 +15,7 @@ const { title } = Astro.props;
 <html lang="en">
 	<head>
 		<BaseHead pageTitle={title} />
-		<style>
-			main {
-				width: calc(100% - 2em);
-				max-width: 100%;
-				margin: 0;
-			}
-			.prose {
-				width: 720px;
-				max-width: calc(100% - 2em);
-				margin: auto;
-				padding: 1em;
-				color: rgb(var(--gray-dark));
-			}
-			.title {
-				margin-bottom: 1em;
-				padding: 1em 0;
-				text-align: center;
-				line-height: 1;
-			}
-			.title h1 {
-				margin: 0 0 0.5em 0;
-			}
-			.date {
-				margin-bottom: 0.5em;
-				color: rgb(var(--gray));
-			}
-			.last-updated-on {
-				font-style: italic;
-			}
-		</style>
 	</head>
-
 	<body>
 		<Header />
 		<main>
@@ -52,3 +23,47 @@ const { title } = Astro.props;
 		</main>
 	</body>
 </html>
+<style>
+	body {
+		background-color: #222222;
+		color: #f2f2f2;
+		font-family: 'Atkinson Hyperlegible', sans-serif;
+		margin: auto;
+		min-width: 360px;
+		max-width: 60%;
+	}
+</style>
+<style is:global>
+	a {
+		color: #e03131;
+	}
+	a:visited {
+		color: #b02525;
+	}
+	a:hover, a:visited:hover {
+		color: #fa5252;
+	}
+	code {
+		background-color: #121210;
+		color: #40c057;
+		font-family: 'Monaspace Neon', monospace;
+		text-wrap: nowrap;
+	}
+	h1 {
+		font-size: 32px;
+		line-height: 32px;
+	}
+	h2 {
+		font-size: 24px;
+		line-height: 28px;
+	}
+	p {
+		font-size: 16px;
+		line-height: 20px;
+		position: relative; /* Allows fleurons to be positioned absolutely. */
+	}
+	ul {
+		margin: 0;
+		position: relative; /* Allows fleurons to be positioned absolutely. */
+	}
+</style>
