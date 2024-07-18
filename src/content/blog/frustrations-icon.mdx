@@ -1,0 +1,89 @@
+---
+title: 'Frustrations Encountered While Attempting to Generate a Favicon'
+pubDate: 'Jul 18 2024'
+---
+
+This post focuses on the final set of changes that I deemed necessary to place the blog in a usable state.
+
+My struggle to make one of these changes was more amusing than the others.
+(I'm talking about creating the favicon.)
+
+## Home page and posts index
+
+The home page now shows the three most recent posts in reverse chronological order. (Of course, at this
+stage there only are three posts.) While usable, the home page is not yet finished, because ultimately I only
+want to render post previews on the home page, not the whole posts. This is because I don't
+want the home page to be overly long.
+
+The posts index currently shows one row per post in chronological order. For now I think that chronological order makes
+more sense for a blog like this one where each post builds on the last. Previously the posts index worked as
+it currently does, although it looked broken before its current styling.
+
+## Favicon
+
+With the home page functional, the blog was usable. And yet, an issue remained.
+
+![Internal server error resulting from not having a favicon.](/blog/frustrations-icon/faviconError.png)
+
+Because I had no favicon, the blog was producing an HTTP 500 error. If I wanted to eliminate this error, I would need a favicon.
+
+Unfortunately, I am no artist. Fortunately, we live in the AI boom. All I should have to do is search the web for
+"AI favicon generator" and surely a decent solution would present itself. Right?
+
+My idea for a beautiful, distinctive icon for the site was a fleuron that incorporated the initials of the blog's title. So I
+opened up my first search result, veed.io, and supplied my prompt. The result was underwhelming.
+
+![At least veed.io tried.](/blog/frustrations-icon/veedio.png)
+
+On reflection, I shouldn't have been surprised that I was given an "f" instead of a "P", as it is
+now well known that AIs are incompetent at spelling.
+
+Next, I attempted to Use AppyPie's favicon generator. I entered my prompt...
+
+![AppyPie dashes my hopes and dreams: The before shot.](/blog/frustrations-icon/appypie1.png)
+
+...and clicked "Generate", at which point I was met with...
+
+![AppyPie dashes my hopes and dreams: The after shot.](/blog/frustrations-icon/appypie2.png)
+
+...a login screen. I didn't wish to sign up for a service that I was going to use once, so I moved on.
+
+My final attempt at getting AI to prove itself was FaviCraft's generator.
+
+![FaviCraft building me up.](/blog/frustrations-icon/favicraft1.png)
+
+I began entering my selections and scrolled down, expecting to find a "Generate" button.
+
+![FaviCraft tearing me down.](/blog/frustrations-icon/favicraft2.png)
+
+Instead, I found a "Sign In" button. I was tricked and the tricksters didn't even need a redirect; they just hid the twist below the fold!
+
+So I gave up on attempting to use an AI favicon generator. Funnily enough, one of my initial search results was [favicon.io](favicon.io) which didn't
+even meet the "AI" part of my search criteria, but it's exactly the service that I ended up using to make my icon.
+
+![favicon.io doing its job.](/blog/frustrations-icon/faviconio.png)
+
+It's not an amazing icon, but it's perfectly serviceable.
+
+## Images
+
+This is my first post that uses images. The image of the console error, although centred, initially looked unaligned to my eyes.
+To compensate, I [once again](/blog/basic-styling) cracked open [Ferdy Christant's colour palette](https://ferdychristant.com/color-for-the-color-challenged-884c7aa04a56)
+and picked out another grey, this time to demarcate the text of the blog by setting the `html` element to use a different colour than
+the `body` element, which now makes it clearer where images live in relation to the sides of the text.
+
+## Death of the "To do" heading
+
+On an unrelated note, in previous posts I wrapped up with a section entitled "To do", but something about the casing of the
+heading looked off to me. I wondered if I had misremembered the advice that headings within a piece of writing should
+use sentence case rather than title case, but a brief check around the web appeared to confirm my understanding.
+I now suspect that the reason "To do" looked weird to me is because it is an infinitive verb, whereas all of my
+other headings are noun phrases, so I'll be sticking to using noun phrases as my headings going forward.
+
+## Things to do
+
+* The home page should not render full posts.
+* Posts should display estimated reading times and progress bars.
+* Post headings should be hyperlinks to URLs with fragments.
+* Post footers should have next and previous buttons.
+* The site should be audited for accessibility.

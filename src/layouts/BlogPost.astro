@@ -1,6 +1,5 @@
 ---
 import FormattedDate from "../components/FormattedDate.astro";
-import BaseLayout from "./BaseLayout.astro";
 
 type Props = {
 	title: string;
@@ -10,18 +9,26 @@ type Props = {
 const { title, pubDate } = Astro.props;
 ---
 
-<BaseLayout title={title}>
-	<article>
-		<div class="prose">
-			<h1>{title}</h1>
-			<FormattedDate date={pubDate} />
-			<hr />
-			<slot />
-		</div>
-	</article>
-</BaseLayout>
+<article>
+	<div class="prose">
+		<h1>{title}</h1>
+		<FormattedDate date={pubDate} />
+		<hr />
+		<slot />
+	</div>
+</article>
 
 <style is:global>
+	article {
+	    margin-bottom: 64px;
+	}
+
+	img {
+		max-width: 100%;
+		margin: auto;
+		display: block;
+	}
+
 	/* https://rwt.io/typography-tips/marks-ends-and-middles-end-marks-sections-and-dead-ends */
 	.prose>:last-child:after {
 		content: "\2766";
