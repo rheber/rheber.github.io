@@ -17,6 +17,7 @@
     "@fontsource/atkinson-hyperlegible": "^5.0.20",
     "@fontsource/monaspace-neon": "^5.0.1",
     "astro": "^4.11.3",
+    "sanitize-html": "^2.13.0",
     "typescript": "^5.5.3"
   }
 }
