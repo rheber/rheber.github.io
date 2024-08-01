@@ -3,23 +3,25 @@ import { SITE_DESCRIPTION } from "../consts";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 import BlogPost from "../layouts/BlogPost.astro";
-
-// https://stackoverflow.com/a/22015930
-const zip = (a: any[], b: any[]): [any, any][] => a.map((k, i) => [k, b[i]]);
+import { zip } from "../helpers";
 
 const recentPosts = (await getCollection("blog")).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 ).slice(0, 3);
 const recentPostRenders = await Promise.all(recentPosts.map(post => post.render()));
-const recentPostContent = recentPostRenders.map(render => render.Content);
-const recentPostsWithContent = zip(recentPosts, recentPostContent);
+const recentPostsWithContent = zip(recentPosts, recentPostRenders);
 ---
 
 <BaseLayout title={SITE_DESCRIPTION}>
 	{recentPostsWithContent.map((item) => {
-		const Content = item[1];
+		const Content = item[1].Content;
 		return (
-			<BlogPost {...item[0].data}>
+			<BlogPost
+				title={item[0].data.title}
+				pubDate={item[0].data.pubDate}
+				minutesRead={item[1].remarkPluginFrontmatter.minutesRead}
+				slug={`blog/${item[0].slug}`}
+			>
 				<Content />
 			</BlogPost>
 		);

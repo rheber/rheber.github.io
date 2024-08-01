@@ -1,18 +1,25 @@
 ---
 import FormattedDate from "../components/FormattedDate.astro";
+import { SPAN_SEPARATOR } from "../consts";
 
 type Props = {
 	title: string;
 	pubDate: Date;
+	minutesRead: string;
+	slug?: string
 };
 
-const { title, pubDate } = Astro.props;
+const { title, pubDate, minutesRead, slug } = Astro.props;
 ---
 
 <article>
 	<div class="prose">
-		<h1>{title}</h1>
-		<FormattedDate date={pubDate} />
+		{slug ? (
+			<h1><a href={slug}>{title}</a></h1>
+		) : (
+			<h1>{title}</h1>
+		)}
+		<span><FormattedDate date={pubDate} /><span>{SPAN_SEPARATOR}</span> <span>{minutesRead}</span></span>
 		<hr />
 		<slot />
 	</div>

@@ -1,0 +1,100 @@
+---
+title: 'Estimated Reading Times (or, Remark and Rehype Are Two Different Things)'
+pubDate: 'Aug 1 2024'
+---
+
+I checked the Astro docs to see if they contained walkthroughs for any of my planned features.
+There's a whole page called [Community Educational Content](https://docs.astro.build/en/community-resources/content/) which
+contained a few things that I wanted to implement, and this post focuses on them.
+
+## Reading Times
+
+First on the agenda was estimated reading times. I had figured that in the worst case I would need to calculate these manually, by
+counting the amount of words in each post and dividing by the average adult
+reading speed. <a id="estimated-reading-footnote-1-ref" href="#estimated-reading-footnote-1">[1]</a>
+
+This manual calculation ended up being unnecessary as I was able to follow
+[Astro's reading time tutorial](https://docs.astro.build/en/recipes/reading-time/) with minimal difficulty. I was surprised that
+the feature as implemented by this tutorial required a plugin for a system call Remark, but it's a minor complaint.
+
+With the ability to calculate reading times in hand, I added reading times not only to the bylines of my posts, but also beside
+the publication dates of the posts in the posts index, so that users can see a post's reading time before opening the post.
+
+## External Link Icons
+
+The other easy win in this changeset was the implementation of icons indicating external links, a change that I nabbed from
+[Astro's external link icon tutorial](https://docs.astro.build/en/recipes/external-links/). I don't love the icon out of the box,
+so I might change it later on.
+
+As before, this change required a plugin, this time for a system called Rehype, which is not Remark,
+the system that was used for the reading times.
+
+I have since learned that:
+
+* Remark is used to process Markdown.
+
+* Rehype is used to process HTML.
+
+* Both projects belong to a family of projects called Unified.
+
+I have not learned why any of this was necessary to implement what I consider to be simple functionality.
+I suspect that the justification is akin to the justification for middleware in web servers, where tasks that could
+be simple to perform are performed in an external layer that is complex to integrate and modify for a reason
+like separation of concerns or some other lofty ideal.
+
+But again, I got the feature basically for free, so I suppose that I can't complain too much.
+
+Although one problem with the code as it stands is that the icon may break to a new line. I feel like it's
+fair to complain about that.
+
+## Title Links
+
+While writing this changeset I realised that I should make my post titles link to the
+post when clicked on the home page. I clicked on a title expecting to visit the post and nothing happened.
+So now post titles on the home page are links.
+
+This did raise a question that I don't ponder too often: Should `h1` tags surround `a` tags or vice versa?
+The consensus appears to be that either is fine, but to me it feels right for `h1` tags to be on the outside.
+That would be consistent with the possibility of smaller headings where only part of the heading is a link,
+although depending on how I implement links to subheading fragments that point may be moot. I also haven't
+yet given thought to how the fragment links will be implemented. Maybe I'll use Remark or Rehype or some other
+kind of Re.
+
+## Footnotes
+
+I wanted to make a comment about reading speeds but it felt like an aside that didn't fit in the flow of the post, so for the
+first time in this blog I resorted to using a footnote. I mimicked a
+[pattern for footnotes](https://docs.astro.build/en/recipes/reading-time/) which seems straightforward.
+I wonder how often I'll be using footnotes and how much (or how little) my footnote style will evolve.
+
+## Icon Inventory
+
+I'm now using three kinds of icon in this blog:
+
+1. My endmarks and separators (&#x2766;);
+
+2. My external link indicators (&#x1f517;); and
+
+3. My footnote return-to-post indicators (&#8617;).
+
+I'm also expecting to use at least a fourth icon soon, to indicate subheading fragment links.
+
+Right now these icons have no unifying principle beyond being Unicode characters, which would be a convenient
+principle to preserve for the sake of the RSS feed, but I might be able to make more discerning
+selections from the character set in future. In particular, emojis don't respect font colour like other characters do,
+which is a point against using emojis.
+
+That suits me just fine, because I don't need many reasons not to use emojis.
+
+<hr />
+
+<p id="estimated-reading-footnote-1">
+   1. Trying to pin down a single value for the average reading speed isn't simple.
+   Some sources, including [ChatGPT](https://chatgpt.com/share/91bd5526-e172-4436-bebb-cd988e91ea20), give a range of
+   something like 200 to 250 words per minute or 200 to 300 words per minute,
+   while [other sources](https://www.sciencedirect.com/science/article/abs/pii/S0749596X19300786) give the very specific
+   value of 238 words per minute.
+   The [default value of the reading-time plugin](https://github.com/ngryman/reading-time/blob/master/src/reading-time.ts#L101),
+   which is the plugin that I'm using at the time of writing, is 200 words per minute.
+   <a href="#estimated-reading-footnote-1-ref">&#8617;</a> 
+</p>

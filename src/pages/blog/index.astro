@@ -2,22 +2,26 @@
 import { getCollection } from "astro:content";
 import FormattedDate from "../../components/FormattedDate.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { zip } from "../../helpers";
+import { SPAN_SEPARATOR } from "../../consts";
 
 const posts = (await getCollection("blog")).sort(
 	(a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf(),
 );
+const postRenders = await Promise.all(posts.map(post => post.render()));
+const postsWithContent = zip(posts, postRenders);
 ---
 
 <BaseLayout title="Posts">
 	<section>
 		<ul>
-			{posts.map((post) => (
+			{postsWithContent.map((item) => (
 				<li>
-					<a href={`/blog/${post.slug}/`}>
+					<a href={`/blog/${item[0].slug}/`}>
 						<div class="entry">
-							<p>{post.data.title}</p>
+							<p>{item[0].data.title}</p>
 							<p>
-								<FormattedDate date={post.data.pubDate} />
+								<span><FormattedDate date={item[0].data.pubDate} /><span>{SPAN_SEPARATOR}</span> <span>{item[1].remarkPluginFrontmatter.minutesRead}</span></span>
 							</p>
 						</div>
 					</a>
