@@ -6,17 +6,19 @@ type Props = {
 	title: string;
 	pubDate: Date;
 	minutesRead: string;
+	slug: string
 };
 
-const { title, pubDate, minutesRead } = Astro.props;
+const { title, pubDate, minutesRead, slug } = Astro.props;
 ---
 
 <article>
 	<div class="prose">
-		<h1>{title}</h1>
+		<h1><a href={slug}>{title}</a></h1>
 		<span><FormattedDate date={pubDate} /><span>{SPAN_SEPARATOR}</span> <span>{minutesRead}</span></span>
 		<hr />
 		<slot />
+		<p><a href={slug}>(Continue reading...)</a></p>
 	</div>
 </article>
 
@@ -31,22 +33,7 @@ const { title, pubDate, minutesRead } = Astro.props;
 		display: block;
 	}
 
-	/* https://rwt.io/typography-tips/marks-ends-and-middles-end-marks-sections-and-dead-ends */
-	.prose>:last-child:after {
-		content: "\2766";
-		font-size: 1.5em;
-		line-height: 0.5;
-		display: block;
-		margin-top: 12px;
-		left: 0;
-		position: absolute;
-	}
-
-	h2 a {
-		padding-left: 8px;
-	}
-
-	h2 .icon-link:after {
-		content: "#";
+	nav.toc {
+		display: none;
 	}
 </style>
