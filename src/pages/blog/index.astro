@@ -2,12 +2,10 @@
 import { getCollection } from "astro:content";
 import FormattedDate from "../../components/FormattedDate.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { zip } from "../../helpers";
+import { cmpPostPubDate, zip } from "../../helpers";
 import { SPAN_SEPARATOR } from "../../consts";
 
-const posts = (await getCollection("blog")).sort(
-	(a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf(),
-);
+const posts = (await getCollection("blog")).sort(cmpPostPubDate);
 const postRenders = await Promise.all(posts.map(post => post.render()));
 const postsWithContent = zip(posts, postRenders);
 ---

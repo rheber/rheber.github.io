@@ -4,16 +4,14 @@ import { marked } from 'marked';
 import { SITE_DESCRIPTION } from "../consts";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import BlogPostTruncated from "../layouts/BlogPostTruncated.astro";
-import { zip } from "../helpers";
+import { cmpPostPubDate, zip } from "../helpers";
 
 const removeElementsFromFirstH2 = (article: string) => {
 	const re = /(##.*)/gs;
 	return article.replace(re, "");
 };
 
-const recentPosts = (await getCollection("blog")).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-).slice(0, 3);
+const recentPosts = (await getCollection("blog")).sort(cmpPostPubDate).slice(0, 3);
 const recentPostRenders = await Promise.all(recentPosts.map(post => {
 	return post.render();
 }));
