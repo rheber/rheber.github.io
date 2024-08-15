@@ -164,6 +164,13 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".mdx"] };
+"next-previous-links.mdx": {
+	id: "next-previous-links.mdx";
+  slug: "next-previous-links";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".mdx"] };
 "starting-blog.mdx": {
 	id: "starting-blog.mdx";
   slug: "starting-blog";

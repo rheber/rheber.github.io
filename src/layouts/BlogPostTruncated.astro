@@ -16,7 +16,6 @@ const { title, pubDate, minutesRead, slug } = Astro.props;
 	<div class="prose">
 		<h1><a href={slug}>{title}</a></h1>
 		<span><FormattedDate date={pubDate} /><span>{SPAN_SEPARATOR}</span> <span>{minutesRead}</span></span>
-		<hr />
 		<slot />
 		<p><a href={slug}>(Continue reading...)</a></p>
 	</div>

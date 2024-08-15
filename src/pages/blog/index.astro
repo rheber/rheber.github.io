@@ -18,7 +18,7 @@ const postsWithContent = zip(posts, postRenders);
 					<a href={`/blog/${item[0].slug}/`}>
 						<div class="entry">
 							<p>{item[0].data.title}</p>
-							<p>
+							<p class="date">
 								<span><FormattedDate date={item[0].data.pubDate} /><span>{SPAN_SEPARATOR}</span> <span>{item[1].remarkPluginFrontmatter.minutesRead}</span></span>
 							</p>
 						</div>
@@ -40,5 +40,8 @@ const postsWithContent = zip(posts, postRenders);
 	.entry {
 		display: flex;
 		justify-content: space-between;
+	}
+	.date {
+		text-align: right;
 	}
 </style>

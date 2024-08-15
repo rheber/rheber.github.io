@@ -6,40 +6,35 @@ type Props = {
 	title: string;
 	pubDate: Date;
 	minutesRead: string;
+	prevPost?: {slug: string, data: {title: string}};
+	nextPost?: {slug: string, data: {title: string}};
 };
 
-const { title, pubDate, minutesRead } = Astro.props;
+const { title, pubDate, minutesRead, prevPost, nextPost } = Astro.props;
 ---
 
 <article>
 	<div class="prose">
 		<h1>{title}</h1>
 		<span><FormattedDate date={pubDate} /><span>{SPAN_SEPARATOR}</span> <span>{minutesRead}</span></span>
-		<hr />
 		<slot />
 	</div>
 </article>
+<hr />
+<nav class="prev-next-links">
+	<div>
+		{prevPost && (<a href={prevPost.slug}>{prevPost.data.title}</a>)}
+	</div>
+	<div class="next-link">
+		{nextPost && (<a href={nextPost.slug}>{nextPost.data.title}</a>)}
+	</div>
+</nav>
 
 <style is:global>
-	article {
-	    margin-bottom: 64px;
-	}
-
 	img {
 		max-width: 100%;
 		margin: auto;
 		display: block;
-	}
-
-	/* https://rwt.io/typography-tips/marks-ends-and-middles-end-marks-sections-and-dead-ends */
-	.prose>:last-child:after {
-		content: "\2766";
-		font-size: 1.5em;
-		line-height: 0.5;
-		display: block;
-		margin-top: 12px;
-		left: 0;
-		position: absolute;
 	}
 
 	h2 a {
@@ -48,5 +43,17 @@ const { title, pubDate, minutesRead } = Astro.props;
 
 	h2 .icon-link:after {
 		content: "#";
+	}
+
+	.prev-next-links {
+		display: flex;
+	}
+
+	.prev-next-links div {
+		width: 50%;
+	}
+
+	.next-link {
+		text-align: right;
 	}
 </style>

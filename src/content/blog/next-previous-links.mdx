@@ -1,0 +1,19 @@
+---
+title: 'Next and Previous Links'
+pubDate: 'Aug 13 2024'
+---
+
+Minor changeset. I added links to the next and previous posts at the end of each blog post. Primarily the change was
+some simple code adapted from a [Mayumi Hara blog post](https://route360.dev/en/post/astro-prevnext-posts/) for getting the data for the
+next and previous posts. 
+
+Some mild difficulty arose in using the data as Hara's code is outdated ([it uses the `Astro.glob` function](/blog/frustrations-rss#feed-content))
+and does not use Typescript, and it wasn't obvious to me from Astro's documentation on
+[content](https://docs.astro.build/en/tutorials/add-content-collections/)
+[collections](https://docs.astro.build/en/guides/content-collections/)
+how I was supposed to augment my blog collection with the data in a straightforward way, but I managed to hack up a solution.
+
+With the links in place at the end of each post, the endmarks no longer seemed visually necessary, so I removed them.
+
+The other, unrelated change in this changeset is that code text inside a hyperlink now uses the colour of the hyperlink rather than
+the colour of general code text. Font colour changes within a hyperlink appear much more jarring to me than differently-coloured code text.

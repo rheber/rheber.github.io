@@ -1,18 +1,36 @@
 ---
-import { type CollectionEntry, getCollection } from 'astro:content';
-import BlogPost from '../../layouts/BlogPost.astro';
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import { type CollectionEntry, getCollection } from "astro:content";
+import BlogPost from "../../layouts/BlogPost.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { cmpPostPubDate } from "../../helpers";
 
 export async function getStaticPaths() {
-	const posts = await getCollection('blog');
-	return posts.map((post) => ({
+	const posts = await getCollection("blog");
+	// https://route360.dev/en/post/astro-prevnext-posts/
+	const numberOfPosts = posts.length;
+	return posts.sort(cmpPostPubDate).map((post, i) => ({
 		params: { slug: post.slug },
-		props: post,
+		props: {
+			...post,
+			data: {
+				...post.data,
+				prevPost:
+					i + 1 === numberOfPosts // If the current post is the oldest
+						? undefined
+						: posts[i + 1],
+				nextPost:
+					i === 0 // If the current post is the newest
+						? undefined
+						: posts[i - 1],
+			},
+		},
 	}));
 }
-type Props = CollectionEntry<'blog'>;
+type Props = CollectionEntry<"blog">;
 
 const post = Astro.props;
+const prevPost = post.data.prevPost;
+const nextPost = post.data.nextPost;
 const { Content, remarkPluginFrontmatter } = await post.render();
 ---
 
@@ -21,6 +39,8 @@ const { Content, remarkPluginFrontmatter } = await post.render();
 		title={post.data.title}
 		pubDate={post.data.pubDate}
 		minutesRead={remarkPluginFrontmatter.minutesRead}
+		prevPost={prevPost}
+		nextPost={nextPost}
 	>
 		<Content />
 	</BlogPost>
