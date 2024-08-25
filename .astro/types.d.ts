@@ -171,6 +171,13 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".mdx"] };
+"progress-bar.mdx": {
+	id: "progress-bar.mdx";
+  slug: "progress-bar";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".mdx"] };
 "starting-blog.mdx": {
 	id: "starting-blog.mdx";
   slug: "starting-blog";
