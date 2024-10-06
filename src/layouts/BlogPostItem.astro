@@ -1,6 +1,7 @@
 ---
 import FormattedDate from "../components/FormattedDate.astro";
-import { SPAN_SEPARATOR } from "../consts";
+
+// Blog post to be displayed in a list of posts on the home page.
 
 type Props = {
 	title: string;
@@ -9,15 +10,14 @@ type Props = {
 	slug: string
 };
 
-const { title, pubDate, minutesRead, slug } = Astro.props;
+const { title, pubDate, slug } = Astro.props;
 ---
 
 <article>
 	<div class="prose">
 		<h1><a href={slug}>{title}</a></h1>
-		<span><FormattedDate date={pubDate} /><span>{SPAN_SEPARATOR}</span> <span>{minutesRead}</span></span>
+		<span><FormattedDate date={pubDate} /></span>
 		<slot />
-		<p><a href={slug}>(Continue reading...)</a></p>
 	</div>
 </article>
 

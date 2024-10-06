@@ -1,6 +1,7 @@
 ---
 import FormattedDate from "../components/FormattedDate.astro";
-import { SPAN_SEPARATOR } from "../consts";
+
+// Blog post meant to be a standalone page.
 
 type Props = {
 	title: string;
@@ -10,16 +11,13 @@ type Props = {
 	nextPost?: { slug: string; data: { title: string } };
 };
 
-const { title, pubDate, minutesRead, prevPost, nextPost } = Astro.props;
+const { title, pubDate, prevPost, nextPost } = Astro.props;
 ---
 
 <article>
 	<div class="prose">
 		<h1>{title}</h1>
-		<span
-			><FormattedDate date={pubDate} /><span>{SPAN_SEPARATOR}</span>
-			<span>{minutesRead}</span></span
-		>
+		<span><FormattedDate date={pubDate} />
 		<slot />
 	</div>
 </article>
@@ -62,32 +60,6 @@ const { title, pubDate, minutesRead, prevPost, nextPost } = Astro.props;
 
 	article {
 		position: relative;
-	}
-
-	article:before {
-		content: "";
-		display: block;
-		background: linear-gradient(
-			to right top,
-			#40c057 50%,
-			#b02525 50%
-		);
-		height: calc(100% - 100vh + 6px);
-		width: 100%;
-		position: absolute;
-		top: 0;
-		left: 0;
-	}
-
-	article:after {
-		content: "";
-		display: block;
-		background-color: #222222;
-		height: calc(100vh - 6px);
-		width: 100%;
-		position: sticky;
-		bottom: 0;
-		left: 0;
 	}
 
 	.prose {

@@ -3,7 +3,6 @@ import { getCollection } from "astro:content";
 import FormattedDate from "../../components/FormattedDate.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { cmpPostPubDate, zip } from "../../helpers";
-import { SPAN_SEPARATOR } from "../../consts";
 
 const posts = (await getCollection("blog")).sort(cmpPostPubDate);
 const postRenders = await Promise.all(posts.map(post => post.render()));
@@ -19,7 +18,7 @@ const postsWithContent = zip(posts, postRenders);
 						<div class="entry">
 							<p>{item[0].data.title}</p>
 							<p class="date">
-								<span><FormattedDate date={item[0].data.pubDate} /><span>{SPAN_SEPARATOR}</span> <span>{item[1].remarkPluginFrontmatter.minutesRead}</span></span>
+								<span><FormattedDate date={item[0].data.pubDate} /></span>
 							</p>
 						</div>
 					</a>

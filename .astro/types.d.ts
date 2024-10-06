@@ -136,58 +136,9 @@ declare module 'astro:content' {
 
 	type ContentEntryMap = {
 		"blog": {
-"basic-styling.mdx": {
-	id: "basic-styling.mdx";
-  slug: "basic-styling";
-  body: string;
-  collection: "blog";
-  data: InferEntrySchema<"blog">
-} & { render(): Render[".mdx"] };
-"estimated-reading.mdx": {
-	id: "estimated-reading.mdx";
-  slug: "estimated-reading";
-  body: string;
-  collection: "blog";
-  data: InferEntrySchema<"blog">
-} & { render(): Render[".mdx"] };
-"frustrations-icon.mdx": {
-	id: "frustrations-icon.mdx";
-  slug: "frustrations-icon";
-  body: string;
-  collection: "blog";
-  data: InferEntrySchema<"blog">
-} & { render(): Render[".mdx"] };
-"frustrations-rss.mdx": {
-	id: "frustrations-rss.mdx";
-  slug: "frustrations-rss";
-  body: string;
-  collection: "blog";
-  data: InferEntrySchema<"blog">
-} & { render(): Render[".mdx"] };
-"next-previous-links.mdx": {
-	id: "next-previous-links.mdx";
-  slug: "next-previous-links";
-  body: string;
-  collection: "blog";
-  data: InferEntrySchema<"blog">
-} & { render(): Render[".mdx"] };
-"progress-bar.mdx": {
-	id: "progress-bar.mdx";
-  slug: "progress-bar";
-  body: string;
-  collection: "blog";
-  data: InferEntrySchema<"blog">
-} & { render(): Render[".mdx"] };
-"starting-blog.mdx": {
-	id: "starting-blog.mdx";
-  slug: "starting-blog";
-  body: string;
-  collection: "blog";
-  data: InferEntrySchema<"blog">
-} & { render(): Render[".mdx"] };
-"truncated-posts.mdx": {
-	id: "truncated-posts.mdx";
-  slug: "truncated-posts";
+"entelechy.mdx": {
+	id: "entelechy.mdx";
+  slug: "entelechy";
   body: string;
   collection: "blog";
   data: InferEntrySchema<"blog">

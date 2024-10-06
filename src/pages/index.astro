@@ -1,15 +1,9 @@
 ---
 import { getCollection } from "astro:content";
-import { marked } from 'marked';
 import { SITE_DESCRIPTION } from "../consts";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import BlogPostTruncated from "../layouts/BlogPostTruncated.astro";
+import BlogPostItem from "../layouts/BlogPostItem.astro";
 import { cmpPostPubDate, zip } from "../helpers";
-
-const removeElementsFromFirstH2 = (article: string) => {
-	const re = /(##.*)/gs;
-	return article.replace(re, "");
-};
 
 const recentPosts = (await getCollection("blog")).sort(cmpPostPubDate).slice(0, 3);
 const recentPostRenders = await Promise.all(recentPosts.map(post => {
@@ -22,14 +16,14 @@ const recentPostsWithContent = zip(recentPosts, recentPostRenders);
 	{recentPostsWithContent.map((item) => {
 		const Content = item[1].Content;
 		return (
-			<BlogPostTruncated
+			<BlogPostItem
 				title={item[0].data.title}
 				pubDate={item[0].data.pubDate}
 				minutesRead={item[1].remarkPluginFrontmatter.minutesRead}
 				slug={`blog/${item[0].slug}`}
 			>
-				<div set:html={marked.parse(removeElementsFromFirstH2(item[0].body))}/>
-			</BlogPost>
+				<Content />
+			</BlogPostItem>
 		);
 	})}
 </BaseLayout>

@@ -1,4 +1,4 @@
-# Slow progress
+# Lexiconnoisseur
 
 ## To run
 
