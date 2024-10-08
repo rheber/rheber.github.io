@@ -24,10 +24,10 @@ const { title, pubDate, prevPost, nextPost } = Astro.props;
 <hr />
 <nav class="prev-next-links">
 	<div>
-		{prevPost && <a href={prevPost.slug}>{prevPost.data.title}</a>}
+		{prevPost && <a href={'/blog/' + prevPost.slug}>{prevPost.data.title}</a>}
 	</div>
 	<div class="next-link">
-		{nextPost && <a href={nextPost.slug}>{nextPost.data.title}</a>}
+		{nextPost && <a href={'/blog/' + nextPost.slug}>{nextPost.data.title}</a>}
 	</div>
 </nav>
 
@@ -56,15 +56,5 @@ const { title, pubDate, prevPost, nextPost } = Astro.props;
 
 	.next-link {
 		text-align: right;
-	}
-
-	article {
-		position: relative;
-	}
-
-	.prose {
-		position: relative;
-		z-index: 1;
-		margin-bottom: calc(-100vh + 6px);
 	}
 </style>
