@@ -150,6 +150,13 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".mdx"] };
+"eminenceGrise.mdx": {
+	id: "eminenceGrise.mdx";
+  slug: "eminencegrise";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".mdx"] };
 "entelechy.mdx": {
 	id: "entelechy.mdx";
   slug: "entelechy";
