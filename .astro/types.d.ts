@@ -171,6 +171,13 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".mdx"] };
+"exceptionThatProvesTheRule.mdx": {
+	id: "exceptionThatProvesTheRule.mdx";
+  slug: "exceptionthatprovestherule";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".mdx"] };
 "litotes.mdx": {
 	id: "litotes.mdx";
   slug: "litotes";
