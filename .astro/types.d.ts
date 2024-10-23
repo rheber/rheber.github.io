@@ -206,6 +206,13 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".mdx"] };
+"metier.mdx": {
+	id: "metier.mdx";
+  slug: "metier";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".mdx"] };
 "stole.mdx": {
 	id: "stole.mdx";
   slug: "stole";
